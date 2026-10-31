@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel SMMB</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #080b12;
+    color: white;
+}
+
+header {
+    background: #101827;
+    padding: 22px;
+    text-align: center;
+    border-bottom: 2px solid #087bff;
+}
+
+header h1 {
+    color: #168cff;
+    font-size: 30px;
+}
+
+.container {
+    max-width: 450px;
+    margin: 35px auto;
+    padding: 20px;
+}
+
+.box {
+    background: #111a29;
+    padding: 25px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #193b61;
+}
+
+h2 {
+    color: #168cff;
+    margin-bottom: 18px;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 14px;
+    margin: 9px 0;
+    border-radius: 8px;
+    border: none;
+    font-size: 15px;
+}
+
+input, select {
+    background: #202c3e;
+    color: white;
+}
+
+button {
+    background: #087bff;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #005bc4;
+}
+
+.service {
+    background: #202c3e;
+    padding: 15px;
+    margin: 12px 0;
+    border-radius: 10px;
+}
+
+.price {
+    color: #29a0ff;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #8292a8;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>SMMB</h1>
+    <p>Seu painel de serviços digitais</p>
+</header>
+
+<div class="container">
+
+    <div class="box" id="login">
+        <h2>Entrar na conta</h2>
+
+        <input type="text" id="nome" placeholder="Seu nome">
+
+        <input type="email" id="email" placeholder="Seu e-mail">
+
+        <input type="password" id="senha" placeholder="Sua senha">
+
+        <button onclick="entrar()">Entrar / Cadastrar</button>
+
+        <p id="mensagem"></p>
+    </div>
+
+    <div class="box" id="painel" style="display:none">
+        <h2>Bem-vindo!</h2>
+        <p id="usuario"></p>
+
+        <h2 style="margin-top:25px">Nossos serviços</h2>
+
+        <div class="service">
+            <h3>Instagram</h3>
+            <p>Seguidores e curtidas</p>
+            <p class="price">Consulte os preços</p>
+        </div>
+
+        <div class="service">
+            <h3>TikTok</h3>
+            <p>Curtidas e visualizações</p>
+            <p class="price">Consulte os preços</p>
+        </div>
+
+        <div class="service">
+            <h3>YouTube</h3>
+            <p>Visualizações e curtidas</p>
+            <p class="price">Consulte os preços</p>
+        </div>
+
+        <h2>Fazer pedido</h2>
+
+        <select id="servico">
+            <option>Seguidores Instagram</option>
+            <option>Curtidas Instagram</option>
+            <option>Curtidas TikTok</option>
+            <option>Visualizações TikTok</option>
+            <option>Visualizações YouTube</option>
+        </select>
+
+        <input type="text" id="perfil" placeholder="Link do perfil ou publicação">
+
+        <input type="number" id="quantidade" placeholder="Quantidade desejada">
+
+        <button onclick="pedido()">Enviar pedido</button>
+
+        <p id="resultado"></p>
+
+        <button onclick="sair()">Sair da conta</button>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 Painel SMMB</p>
+</footer>
+
+<script>
+function entrar() {
+    let nome = document.getElementById("nome").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let senha = document.getElementById("senha").value;
+
+    if (!nome || !email || senha.length < 6) {
+        document.getElementById("mensagem").innerText =
+        "Preencha os campos. A senha deve ter pelo menos 6 caracteres.";
+        return;
+    }
+
+    document.getElementById("login").style.display = "none";
+    document.getElementById("painel").style.display = "block";
+    document.getElementById("usuario").innerText = "Olá, " + nome + "!";
+}
+
+function pedido() {
+    let servico = document.getElementById("servico").value;
+    let perfil = document.getElementById("perfil").value.trim();
+    let quantidade = Number(document.getElementById("quantidade").value);
+
+    if (!perfil || !Number.isInteger(quantidade) || quantidade <= 0) {
+        alert("Preencha o link e uma quantidade válida.");
+        return;
+    }
+
+    document.getElementById("resultado").innerText =
+    "Pedido de demonstração: " + servico +
+    " | Quantidade: " + quantidade +
+    ". Ainda não foi enviado para processamento.";
+}
+
+function sair() {
+    document.getElementById("painel").style.display = "none";
+    document.getElementById("login").style.display = "block";
+}
+</script>
+
+</body>
+</html>
