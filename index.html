@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -6,121 +7,145 @@
 <title>Painel SMMB</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#080b12;color:white;font-family:Arial,sans-serif}
-header{text-align:center;padding:28px 15px;background:#101827;border-bottom:2px solid #168cff}
-h1{color:#168cff}
-p{color:#b6c4d6;line-height:1.5}
-.container{max-width:600px;margin:25px auto;padding:15px}
-.box{background:#111a29;padding:20px;border:1px solid #193b61;border-radius:15px;margin-bottom:18px}
+body{
+ margin:0;font-family:Arial,sans-serif;
+ background:#080d18;color:white
+}
+header{
+ background:#101d35;padding:25px;text-align:center;
+ border-bottom:2px solid #168cff
+}
+header h1{color:#168cff;margin:0}
+header p{color:#bbb}
+.container{padding:18px;max-width:650px;margin:auto}
+.card{
+ background:#111d31;padding:20px;
+ border-radius:12px;margin:15px 0;
+ border:1px solid #203b60
+}
 h2{color:#168cff}
-label{display:block;margin:14px 0 7px}
-input,select,textarea{width:100%;padding:13px;background:#080f1c;color:white;border:1px solid #29466a;border-radius:8px;font-size:15px}
-button{width:100%;padding:15px;background:#168cff;color:white;border:0;border-radius:9px;font-size:16px;font-weight:bold;margin-top:18px}
-.service{padding:12px;background:#080f1c;border-radius:9px;margin:9px 0;border:1px solid #203650}
-.price{color:#66b5ff;font-weight:bold}
-.total{font-size:22px;color:#66b5ff}
-small{color:#a8b5c7}
+.service{
+ background:#0a1426;padding:14px;
+ border:1px solid #203b60;
+ border-radius:8px;margin:10px 0
+}
+input,select,textarea{
+ width:100%;padding:13px;margin:8px 0;
+ border-radius:7px;border:1px solid #168cff;
+ background:#080d18;color:white
+}
+button{
+ width:100%;padding:14px;
+ background:#087cf0;border:0;
+ border-radius:7px;color:white;
+ font-weight:bold;font-size:15px;
+ cursor:pointer
+}
+button:active{opacity:.8}
+small{color:#aaa}
+footer{text-align:center;padding:25px;color:#888}
 </style>
 </head>
 <body>
+
 <header>
 <h1>PAINEL SMMB</h1>
-<p>Serviços para fortalecer suas redes sociais</p>
+<p>Seu painel de serviços digitais</p>
 </header>
 
 <div class="container">
-<div class="box">
-<h2>Nossos serviços</h2>
-<div class="service">Análise de perfil — <span class="price">R$ 9,90</span></div>
-<div class="service">Arte para postagem — <span class="price">R$ 9,90</span></div>
-<div class="service">Ideias de conteúdo — <span class="price">R$ 7,90</span></div>
-<div class="service">Edição de vídeo curto — <span class="price">R$ 14,90</span></div>
-<div class="service">Planejamento de divulgação — <span class="price">R$ 19,90</span></div>
-<div class="service">Calendário de conteúdo — <span class="price">R$ 24,90</span></div>
+
+<div class="card">
+<h2>Bem-vindo ao SMMB!</h2>
+<p>Escolha seu serviço e solicite seu orçamento.</p>
 </div>
 
-<div class="box">
-<h2>Faça seu pedido</h2>
+<div class="card">
+<h2>Instagram</h2>
+<div class="service">Criação de artes para publicações</div>
+<div class="service">Consultoria para crescimento do perfil</div>
+<div class="service">Planejamento de conteúdo</div>
+</div>
+
+<div class="card">
+<h2>TikTok</h2>
+<div class="service">Criação de capas e artes</div>
+<div class="service">Consultoria para vídeos</div>
+<div class="service">Planejamento de publicações</div>
+</div>
+
+<div class="card">
+<h2>YouTube</h2>
+<div class="service">Criação de thumbnails</div>
+<div class="service">Consultoria para canal</div>
+<div class="service">Planejamento de conteúdo</div>
+</div>
+
+<div class="card">
+<h2>Fazer pedido</h2>
+
+<form id="pedido">
+<label>Seu nome</label>
+<input id="nome" placeholder="Digite seu nome" required>
 
 <label>Plataforma</label>
-<select id="platform">
-<option value="">Selecione</option>
+<select id="plataforma" required>
+<option value="">Escolha</option>
 <option>Instagram</option>
 <option>TikTok</option>
 <option>YouTube</option>
 </select>
 
-<label>Serviço</label>
-<select id="service" onchange="calculate()">
-<option value="">Escolha um serviço</option>
-<option value="Análise de perfil" data-price="9.90">Análise de perfil — R$ 9,90</option>
-<option value="Arte para postagem" data-price="9.90">Arte para postagem — R$ 9,90</option>
-<option value="Ideias de conteúdo" data-price="7.90">Ideias de conteúdo — R$ 7,90</option>
-<option value="Edição de vídeo curto" data-price="14.90">Edição de vídeo curto — R$ 14,90</option>
-<option value="Planejamento de divulgação" data-price="19.90">Planejamento de divulgação — R$ 19,90</option>
-<option value="Calendário de conteúdo" data-price="24.90">Calendário de conteúdo — R$ 24,90</option>
+<label>Serviço desejado</label>
+<select id="servico" required>
+<option value="">Escolha o serviço</option>
+<option>Criação de artes</option>
+<option>Consultoria de perfil</option>
+<option>Planejamento de conteúdo</option>
+<option>Criação de thumbnails</option>
 </select>
 
-<label>Quantidade (para artes ou vídeos)</label>
-<input type="number" id="quantity" value="1" min="1" max="20" oninput="calculate()">
-
-<label>Link do seu perfil</label>
-<input type="url" id="profile" placeholder="Cole o link do perfil">
+<label>Link do perfil</label>
+<input id="link" type="url" placeholder="Cole o link">
 
 <label>Detalhes do pedido</label>
-<textarea id="details" placeholder="Explique o que você precisa"></textarea>
+<textarea id="detalhes" placeholder="Explique o que precisa"></textarea>
 
-<p>Valor estimado:</p>
-<div class="total" id="total">R$ 0,00</div>
+<button type="submit">Solicitar pelo WhatsApp</button>
+</form>
+</div>
 
-<button onclick="sendOrder()">FAZER PEDIDO PELO WHATSAPP</button>
-<small>O pagamento e o prazo serão combinados pelo WhatsApp. Este painel ainda não confirma Pix automaticamente.</small>
 </div>
-</div>
+
+<footer>© 2026 Painel SMMB</footer>
 
 <script>
-const prices={
-"Análise de perfil":9.90,
-"Arte para postagem":9.90,
-"Ideias de conteúdo":7.90,
-"Edição de vídeo curto":14.90,
-"Planejamento de divulgação":19.90,
-"Calendário de conteúdo":24.90
-};
+// COLOQUE SEU NÚMERO COM DDD AQUI
+const WHATSAPP = "55DDDNUMERO";
 
-function calculate(){
-let service=document.getElementById("service").value;
-let qty=Math.max(1,Math.min(20,Number(document.getElementById("quantity").value)||1));
-if(service!=="Arte para postagem" && service!=="Edição de vídeo curto") qty=1;
-document.getElementById("quantity").value=qty;
-let total=(prices[service]||0)*qty;
-document.getElementById("total").innerText=total.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
-}
+document.getElementById("pedido").addEventListener("submit",function(e){
+ e.preventDefault();
 
-function sendOrder(){
-let platform=document.getElementById("platform").value;
-let service=document.getElementById("service").value;
-let profile=document.getElementById("profile").value;
-let details=document.getElementById("details").value;
-let qty=Number(document.getElementById("quantity").value)||1;
+ const nome=document.getElementById("nome").value;
+ const plataforma=document.getElementById("plataforma").value;
+ const servico=document.getElementById("servico").value;
+ const link=document.getElementById("link").value;
+ const detalhes=document.getElementById("detalhes").value;
 
-if(!platform||!service||!profile){
-alert("Preencha a plataforma, o serviço e o link do perfil.");
-return;
-}
+ const mensagem=
+ `NOVO PEDIDO - PAINEL SMMB\n\n`+
+ `Nome: ${nome}\n`+
+ `Plataforma: ${plataforma}\n`+
+ `Serviço: ${servico}\n`+
+ `Link: ${link}\n`+
+ `Detalhes: ${detalhes}`;
 
-let amount=(prices[service]||0)*qty;
-let message=`Olá! Quero fazer um pedido no Painel SMMB.
-Plataforma: ${platform}
-Serviço: ${service}
-Quantidade: ${qty}
-Perfil: ${profile}
-Valor estimado: ${amount.toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}
-Detalhes: ${details||"Não informado"}`;
-
-window.open("https://wa.me/5592991729746?text="+encodeURIComponent(message),"_blank");
-}
-calculate();
+ window.open(
+  "https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(mensagem),
+  "_blank"
+ );
+});
 </script>
+
 </body>
 </html>
