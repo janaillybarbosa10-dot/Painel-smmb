@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Painel SMMB</title>
+
 <style>
 *{box-sizing:border-box}
 body{
@@ -41,11 +42,11 @@ button{
  font-weight:bold;font-size:15px;
  cursor:pointer
 }
-button:active{opacity:.8}
 small{color:#aaa}
 footer{text-align:center;padding:25px;color:#888}
 </style>
 </head>
+
 <body>
 
 <header>
@@ -85,6 +86,7 @@ footer{text-align:center;padding:25px;color:#888}
 <h2>Fazer pedido</h2>
 
 <form id="pedido">
+
 <label>Seu nome</label>
 <input id="nome" placeholder="Digite seu nome" required>
 
@@ -111,28 +113,38 @@ footer{text-align:center;padding:25px;color:#888}
 <label>Detalhes do pedido</label>
 <textarea id="detalhes" placeholder="Explique o que precisa"></textarea>
 
-<button type="submit">Solicitar pelo WhatsApp</button>
+<button type="submit" id="botao">
+Solicitar pelo WhatsApp
+</button>
+
+<p id="status"></p>
 </form>
 </div>
-
 </div>
 
 <footer>© 2026 Painel SMMB</footer>
 
 <script>
-// COLOQUE SEU NÚMERO COM DDD AQUI
-const WHATSAPP = "55DDDNUMERO";
+const API_URL = "https://bfgrmpbwwsbwkdbcwdnj.supabase.co/rest/v1/pedidos";
 
-document.getElementById("pedido").addEventListener("submit",function(e){
+const API_KEY = "sb_publishable_ndZO5hFp61rbvCVS-T0fQQ_MWThuzUS";
+
+const WHATSAPP = "5592991729746";
+
+document.getElementById("pedido").addEventListener("submit", async function(e){
+
  e.preventDefault();
 
- const nome=document.getElementById("nome").value;
- const plataforma=document.getElementById("plataforma").value;
- const servico=document.getElementById("servico").value;
- const link=document.getElementById("link").value;
- const detalhes=document.getElementById("detalhes").value;
+ const nome = document.getElementById("nome").value.trim();
+ const plataforma = document.getElementById("plataforma").value;
+ const servico = document.getElementById("servico").value;
+ const link = document.getElementById("link").value.trim();
+ const detalhes = document.getElementById("detalhes").value.trim();
 
- const mensagem=
+ const botao = document.getElementById("botao");
+ const status = document.getElementById("status");
+
+ const mensagem =
  `NOVO PEDIDO - PAINEL SMMB\n\n`+
  `Nome: ${nome}\n`+
  `Plataforma: ${plataforma}\n`+
@@ -140,10 +152,62 @@ document.getElementById("pedido").addEventListener("submit",function(e){
  `Link: ${link}\n`+
  `Detalhes: ${detalhes}`;
 
+ const dados = {
+   cliente: nome,
+   servico:
+     `Plataforma: ${plataforma} | `+
+     `Serviço: ${servico} | `+
+     `Link: ${link} | `+
+     `Detalhes: ${detalhes}`
+ };
+
+ botao.disabled = true;
+ botao.textContent = "Enviando pedido...";
+ status.textContent = "Registrando seu pedido...";
+
+ // Abre o WhatsApp durante a interação do usuário
  window.open(
-  "https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(mensagem),
-  "_blank"
+   "https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(mensagem),
+   "_blank"
  );
+
+ try {
+
+   const resposta = await fetch(API_URL,{
+     method:"POST",
+     headers:{
+       "apikey":API_KEY,
+       "Content-Type":"application/json",
+       "Prefer":"return=minimal"
+     },
+     body:JSON.stringify(dados)
+   });
+
+   if(!resposta.ok){
+     const erro = await resposta.text();
+     throw new Error(erro);
+   }
+
+   status.textContent = "Pedido registrado com sucesso!";
+   alert("Pedido registrado no Painel SMMB!");
+
+   document.getElementById("pedido").reset();
+
+ } catch(erro) {
+
+   console.error(erro);
+   status.textContent =
+     "O WhatsApp foi aberto, mas não foi possível registrar o pedido no banco. Avise o suporte.";
+
+   alert("O pedido foi direcionado ao WhatsApp, mas houve um erro ao salvar no banco. Precisamos verificar a configuração.");
+
+ } finally {
+
+   botao.disabled = false;
+   botao.textContent = "Solicitar pelo WhatsApp";
+
+ }
+
 });
 </script>
 
