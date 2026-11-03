@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -7,86 +8,145 @@
 <style>
 *{box-sizing:border-box}
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#080d18;
-color:white;
+ margin:0;font-family:Arial,sans-serif;
+ background:#080d18;color:white
 }
 header{
-background:#101d35;
-padding:25px;
-text-align:center;
-border-bottom:2px solid #168cff;
+ background:#101d35;padding:25px;text-align:center;
+ border-bottom:2px solid #168cff
 }
 header h1{color:#168cff;margin:0}
 header p{color:#bbb}
-.container{padding:20px;max-width:650px;margin:auto}
+.container{padding:18px;max-width:650px;margin:auto}
 .card{
-background:#111d31;
-padding:20px;
-border-radius:12px;
-margin:15px 0;
-border:1px solid #203b60;
+ background:#111d31;padding:20px;
+ border-radius:12px;margin:15px 0;
+ border:1px solid #203b60
 }
 h2{color:#168cff}
-input,select{
-width:100%;
-padding:13px;
-margin:8px 0;
-border-radius:7px;
-border:1px solid #168cff;
-background:#080d18;
-color:white;
+.service{
+ background:#0a1426;padding:14px;
+ border:1px solid #203b60;
+ border-radius:8px;margin:10px 0
+}
+input,select,textarea{
+ width:100%;padding:13px;margin:8px 0;
+ border-radius:7px;border:1px solid #168cff;
+ background:#080d18;color:white
 }
 button{
-width:100%;
-padding:14px;
-background:#087cf0;
-border:0;
-border-radius:7px;
-color:white;
-font-weight:bold;
+ width:100%;padding:14px;
+ background:#087cf0;border:0;
+ border-radius:7px;color:white;
+ font-weight:bold;font-size:15px;
+ cursor:pointer
 }
+button:active{opacity:.8}
+small{color:#aaa}
 footer{text-align:center;padding:25px;color:#888}
 </style>
 </head>
 <body>
+
 <header>
-<h1>Painel SMMB</h1>
+<h1>PAINEL SMMB</h1>
 <p>Seu painel de serviços digitais</p>
 </header>
 
 <div class="container">
+
 <div class="card">
 <h2>Bem-vindo ao SMMB!</h2>
-<p>Escolha seu serviço digital.</p>
+<p>Escolha seu serviço e solicite seu orçamento.</p>
+</div>
+
+<div class="card">
+<h2>Instagram</h2>
+<div class="service">Criação de artes para publicações</div>
+<div class="service">Consultoria para crescimento do perfil</div>
+<div class="service">Planejamento de conteúdo</div>
+</div>
+
+<div class="card">
+<h2>TikTok</h2>
+<div class="service">Criação de capas e artes</div>
+<div class="service">Consultoria para vídeos</div>
+<div class="service">Planejamento de publicações</div>
+</div>
+
+<div class="card">
+<h2>YouTube</h2>
+<div class="service">Criação de thumbnails</div>
+<div class="service">Consultoria para canal</div>
+<div class="service">Planejamento de conteúdo</div>
 </div>
 
 <div class="card">
 <h2>Fazer pedido</h2>
-<form onsubmit="alert('Demonstração: o pedido ainda não foi enviado.');return false;">
-<label>Seu nome</label>
-<input type="text" placeholder="Digite seu nome" required>
 
-<label>Serviço</label>
-<select required>
-<option value="">Escolha um serviço</option>
-<option>Seguidores</option>
-<option>Curtidas</option>
-<option>Visualizações</option>
+<form id="pedido">
+<label>Seu nome</label>
+<input id="nome" placeholder="Digite seu nome" required>
+
+<label>Plataforma</label>
+<select id="plataforma" required>
+<option value="">Escolha</option>
+<option>Instagram</option>
+<option>TikTok</option>
+<option>YouTube</option>
+</select>
+
+<label>Serviço desejado</label>
+<select id="servico" required>
+<option value="">Escolha o serviço</option>
+<option>Criação de artes</option>
+<option>Consultoria de perfil</option>
+<option>Planejamento de conteúdo</option>
+<option>Criação de thumbnails</option>
 </select>
 
 <label>Link do perfil</label>
-<input type="url" placeholder="Cole o link do perfil" required>
+<input id="link" type="url" placeholder="Cole o link">
 
-<label>Quantidade</label>
-<input type="number" min="1" placeholder="Quantidade" required>
+<label>Detalhes do pedido</label>
+<textarea id="detalhes" placeholder="Explique o que precisa"></textarea>
 
-<button type="submit">Enviar pedido</button>
+<button type="submit">Solicitar pelo WhatsApp</button>
 </form>
 </div>
+
 </div>
 
 <footer>© 2026 Painel SMMB</footer>
+
+<script>
+// COLOQUE SEU NÚMERO COM DDD AQUI
+const WHATSAPP = "55DDDNUMERO";
+
+document.getElementById("pedido").addEventListener("submit",function(e){
+ e.preventDefault();
+
+ const nome=document.getElementById("nome").value;
+ const plataforma=document.getElementById("plataforma").value;
+ const servico=document.getElementById("servico").value;
+ const link=document.getElementById("link").value;
+ const detalhes=document.getElementById("detalhes").value;
+
+ const mensagem=
+ `NOVO PEDIDO - PAINEL SMMB\n\n`+
+ `Nome: ${nome}\n`+
+ `Plataforma: ${plataforma}\n`+
+ `Serviço: ${servico}\n`+
+ `Link: ${link}\n`+
+ `Detalhes: ${detalhes}`;
+
+ window.open(
+  "https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(mensagem),
+  "_blank"
+ );
+});
+</script>
+
 </body>
 </html>
+
