@@ -4,209 +4,123 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Painel SMMB</title>
-
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-body {
-    background: #080b12;
-    color: white;
-}
-
-header {
-    background: #101827;
-    padding: 22px;
-    text-align: center;
-    border-bottom: 2px solid #087bff;
-}
-
-header h1 {
-    color: #168cff;
-    font-size: 30px;
-}
-
-.container {
-    max-width: 450px;
-    margin: 35px auto;
-    padding: 20px;
-}
-
-.box {
-    background: #111a29;
-    padding: 25px;
-    border-radius: 15px;
-    margin-bottom: 20px;
-    border: 1px solid #193b61;
-}
-
-h2 {
-    color: #168cff;
-    margin-bottom: 18px;
-}
-
-input, select, button {
-    width: 100%;
-    padding: 14px;
-    margin: 9px 0;
-    border-radius: 8px;
-    border: none;
-    font-size: 15px;
-}
-
-input, select {
-    background: #202c3e;
-    color: white;
-}
-
-button {
-    background: #087bff;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #005bc4;
-}
-
-.service {
-    background: #202c3e;
-    padding: 15px;
-    margin: 12px 0;
-    border-radius: 10px;
-}
-
-.price {
-    color: #29a0ff;
-    font-weight: bold;
-    margin-top: 8px;
-}
-
-footer {
-    text-align: center;
-    padding: 25px;
-    color: #8292a8;
-}
+*{box-sizing:border-box}
+body{margin:0;background:#080b12;color:white;font-family:Arial,sans-serif}
+header{text-align:center;padding:28px 15px;background:#101827;border-bottom:2px solid #168cff}
+h1{color:#168cff}
+p{color:#b6c4d6;line-height:1.5}
+.container{max-width:600px;margin:25px auto;padding:15px}
+.box{background:#111a29;padding:20px;border:1px solid #193b61;border-radius:15px;margin-bottom:18px}
+h2{color:#168cff}
+label{display:block;margin:14px 0 7px}
+input,select,textarea{width:100%;padding:13px;background:#080f1c;color:white;border:1px solid #29466a;border-radius:8px;font-size:15px}
+button{width:100%;padding:15px;background:#168cff;color:white;border:0;border-radius:9px;font-size:16px;font-weight:bold;margin-top:18px}
+.service{padding:12px;background:#080f1c;border-radius:9px;margin:9px 0;border:1px solid #203650}
+.price{color:#66b5ff;font-weight:bold}
+.total{font-size:22px;color:#66b5ff}
+small{color:#a8b5c7}
 </style>
 </head>
-
 <body>
-
 <header>
-    <h1>SMMB</h1>
-    <p>Seu painel de serviços digitais</p>
+<h1>PAINEL SMMB</h1>
+<p>Serviços para fortalecer suas redes sociais</p>
 </header>
 
 <div class="container">
-
-    <div class="box" id="login">
-        <h2>Entrar na conta</h2>
-
-        <input type="text" id="nome" placeholder="Seu nome">
-
-        <input type="email" id="email" placeholder="Seu e-mail">
-
-        <input type="password" id="senha" placeholder="Sua senha">
-
-        <button onclick="entrar()">Entrar / Cadastrar</button>
-
-        <p id="mensagem"></p>
-    </div>
-
-    <div class="box" id="painel" style="display:none">
-        <h2>Bem-vindo!</h2>
-        <p id="usuario"></p>
-
-        <h2 style="margin-top:25px">Nossos serviços</h2>
-
-        <div class="service">
-            <h3>Instagram</h3>
-            <p>Seguidores e curtidas</p>
-            <p class="price">Consulte os preços</p>
-        </div>
-
-        <div class="service">
-            <h3>TikTok</h3>
-            <p>Curtidas e visualizações</p>
-            <p class="price">Consulte os preços</p>
-        </div>
-
-        <div class="service">
-            <h3>YouTube</h3>
-            <p>Visualizações e curtidas</p>
-            <p class="price">Consulte os preços</p>
-        </div>
-
-        <h2>Fazer pedido</h2>
-
-        <select id="servico">
-            <option>Seguidores Instagram</option>
-            <option>Curtidas Instagram</option>
-            <option>Curtidas TikTok</option>
-            <option>Visualizações TikTok</option>
-            <option>Visualizações YouTube</option>
-        </select>
-
-        <input type="text" id="perfil" placeholder="Link do perfil ou publicação">
-
-        <input type="number" id="quantidade" placeholder="Quantidade desejada">
-
-        <button onclick="pedido()">Enviar pedido</button>
-
-        <p id="resultado"></p>
-
-        <button onclick="sair()">Sair da conta</button>
-    </div>
-
+<div class="box">
+<h2>Nossos serviços</h2>
+<div class="service">Análise de perfil — <span class="price">R$ 9,90</span></div>
+<div class="service">Arte para postagem — <span class="price">R$ 9,90</span></div>
+<div class="service">Ideias de conteúdo — <span class="price">R$ 7,90</span></div>
+<div class="service">Edição de vídeo curto — <span class="price">R$ 14,90</span></div>
+<div class="service">Planejamento de divulgação — <span class="price">R$ 19,90</span></div>
+<div class="service">Calendário de conteúdo — <span class="price">R$ 24,90</span></div>
 </div>
 
-<footer>
-    <p>© 2026 Painel SMMB</p>
-</footer>
+<div class="box">
+<h2>Faça seu pedido</h2>
+
+<label>Plataforma</label>
+<select id="platform">
+<option value="">Selecione</option>
+<option>Instagram</option>
+<option>TikTok</option>
+<option>YouTube</option>
+</select>
+
+<label>Serviço</label>
+<select id="service" onchange="calculate()">
+<option value="">Escolha um serviço</option>
+<option value="Análise de perfil" data-price="9.90">Análise de perfil — R$ 9,90</option>
+<option value="Arte para postagem" data-price="9.90">Arte para postagem — R$ 9,90</option>
+<option value="Ideias de conteúdo" data-price="7.90">Ideias de conteúdo — R$ 7,90</option>
+<option value="Edição de vídeo curto" data-price="14.90">Edição de vídeo curto — R$ 14,90</option>
+<option value="Planejamento de divulgação" data-price="19.90">Planejamento de divulgação — R$ 19,90</option>
+<option value="Calendário de conteúdo" data-price="24.90">Calendário de conteúdo — R$ 24,90</option>
+</select>
+
+<label>Quantidade (para artes ou vídeos)</label>
+<input type="number" id="quantity" value="1" min="1" max="20" oninput="calculate()">
+
+<label>Link do seu perfil</label>
+<input type="url" id="profile" placeholder="Cole o link do perfil">
+
+<label>Detalhes do pedido</label>
+<textarea id="details" placeholder="Explique o que você precisa"></textarea>
+
+<p>Valor estimado:</p>
+<div class="total" id="total">R$ 0,00</div>
+
+<button onclick="sendOrder()">FAZER PEDIDO PELO WHATSAPP</button>
+<small>O pagamento e o prazo serão combinados pelo WhatsApp. Este painel ainda não confirma Pix automaticamente.</small>
+</div>
+</div>
 
 <script>
-function entrar() {
-    let nome = document.getElementById("nome").value.trim();
-    let email = document.getElementById("email").value.trim();
-    let senha = document.getElementById("senha").value;
+const prices={
+"Análise de perfil":9.90,
+"Arte para postagem":9.90,
+"Ideias de conteúdo":7.90,
+"Edição de vídeo curto":14.90,
+"Planejamento de divulgação":19.90,
+"Calendário de conteúdo":24.90
+};
 
-    if (!nome || !email || senha.length < 6) {
-        document.getElementById("mensagem").innerText =
-        "Preencha os campos. A senha deve ter pelo menos 6 caracteres.";
-        return;
-    }
-
-    document.getElementById("login").style.display = "none";
-    document.getElementById("painel").style.display = "block";
-    document.getElementById("usuario").innerText = "Olá, " + nome + "!";
+function calculate(){
+let service=document.getElementById("service").value;
+let qty=Math.max(1,Math.min(20,Number(document.getElementById("quantity").value)||1));
+if(service!=="Arte para postagem" && service!=="Edição de vídeo curto") qty=1;
+document.getElementById("quantity").value=qty;
+let total=(prices[service]||0)*qty;
+document.getElementById("total").innerText=total.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 }
 
-function pedido() {
-    let servico = document.getElementById("servico").value;
-    let perfil = document.getElementById("perfil").value.trim();
-    let quantidade = Number(document.getElementById("quantidade").value);
+function sendOrder(){
+let platform=document.getElementById("platform").value;
+let service=document.getElementById("service").value;
+let profile=document.getElementById("profile").value;
+let details=document.getElementById("details").value;
+let qty=Number(document.getElementById("quantity").value)||1;
 
-    if (!perfil || !Number.isInteger(quantidade) || quantidade <= 0) {
-        alert("Preencha o link e uma quantidade válida.");
-        return;
-    }
-
-    document.getElementById("resultado").innerText =
-    "Pedido de demonstração: " + servico +
-    " | Quantidade: " + quantidade +
-    ". Ainda não foi enviado para processamento.";
+if(!platform||!service||!profile){
+alert("Preencha a plataforma, o serviço e o link do perfil.");
+return;
 }
 
-function sair() {
-    document.getElementById("painel").style.display = "none";
-    document.getElementById("login").style.display = "block";
+let amount=(prices[service]||0)*qty;
+let message=`Olá! Quero fazer um pedido no Painel SMMB.
+Plataforma: ${platform}
+Serviço: ${service}
+Quantidade: ${qty}
+Perfil: ${profile}
+Valor estimado: ${amount.toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}
+Detalhes: ${details||"Não informado"}`;
+
+window.open("https://wa.me/5592991729746?text="+encodeURIComponent(message),"_blank");
 }
+calculate();
 </script>
-
 </body>
 </html>
